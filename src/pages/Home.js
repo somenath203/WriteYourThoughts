@@ -17,23 +17,26 @@ const Home = () => {
 
   const allPostsRef = collection(db, 'posts');
 
-  const getAllPosts = async () => {
-
-    const data = await getDocs(allPostsRef);
-
-    setPosts(data.docs.map((document) => {
-
-      return { ...document.data(), id: document.id }
-
-    }));
-
-  };
-
 
   useEffect(() => {
-    getAllPosts();
-  }, []);
 
+    const getAllPosts = async () => {
+
+      const data = await getDocs(allPostsRef);
+  
+      setPosts(data.docs.map((document) => {
+  
+        return { ...document.data(), id: document.id }
+  
+      }));
+  
+    };
+
+    getAllPosts();
+
+  }, [allPostsRef]);
+  
+  
   return (
     <section>
       {posts.length === 0 ? <p className="no-posts">No Thoughts To Display...</p> : posts.map((post, index) => (
