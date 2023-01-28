@@ -230,6 +230,7 @@ footer {
   background: #ff4747;
   color: #ffffff;
   font-size: 1.4rem;
+  cursor: pointer;
 }
 
 .login-screen button i {
