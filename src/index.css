@@ -199,3 +199,39 @@ footer {
   text-align: center;
   margin-top: 2rem;
 }
+
+.login-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 15rem;
+}
+
+.login-screen h1 {
+  word-spacing: 7px;
+  letter-spacing: 8px;
+  font-size: 40px;
+}
+
+.login-screen p {
+  margin-top: 1.3rem;
+  font-size: 18px;
+}
+
+.login-screen button {
+  margin-top: 2rem;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  background: #ff4747;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+
+.login-screen button i {
+  margin-right: 6px;
+}

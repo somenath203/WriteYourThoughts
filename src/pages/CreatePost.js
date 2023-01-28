@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import { db, auth } from './../firebase/config';
 import useTitle from './../hooks/useTitle';
+import Navbar from './../components/Header';
 
 
 const CreatePost = () => {
@@ -14,8 +15,8 @@ const CreatePost = () => {
   useTitle('CreateThought')
 
 
-  const [ title, setTitle ] = useState('');
-  const [ description, setDescription ] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [creatingPost, setCreatingPost] = useState('');
 
   const navigate = useNavigate();
@@ -30,52 +31,55 @@ const CreatePost = () => {
       description: description,
       author: {
         email: auth.currentUser.email,
-        id: auth.currentUser.uid 
+        id: auth.currentUser.uid
       }
     };
 
     setCreatingPost(true);
 
-    await addDoc(postReference, newlyCreatedDocument); 
+    await addDoc(postReference, newlyCreatedDocument);
 
     setCreatingPost(false);
 
     toast.success('your thought has been created successfully');
 
-    navigate('/');
+    navigate('/home');
 
   };
 
   return (
-    <section className="create">
+    <>
+      <Navbar />
+      <section className="create">
 
-      <div className="heading">
-        <h1>Add Your Thought</h1>
-      </div>
+        <div className="heading">
+          <h1>Add Your Thought</h1>
+        </div>
 
-      <form className="createPost" onSubmit={onSubmitPost}>
+        <form className="createPost" onSubmit={onSubmitPost}>
 
-        <input
-          type="text"
-          className="title"
-          placeholder="enter the title of your thought"
-          onChange={(e) => setTitle(e.target.value)}
-          required
+          <input
+            type="text"
+            className="title"
+            placeholder="enter the title of your thought"
+            onChange={(e) => setTitle(e.target.value)}
+            required
 
-        />
+          />
 
-        <textarea
-          type='text'
-          className="description"
-          placeholder="describe your thought in detail"
-          onChange={(e) => setDescription(e.target.value)}
-          required></textarea>
+          <textarea
+            type='text'
+            className="description"
+            placeholder="describe your thought in detail"
+            onChange={(e) => setDescription(e.target.value)}
+            required></textarea>
 
-        <button className="submit">{creatingPost ? 'Creaitng...' : 'Create'}</button>
+          <button className="submit">{creatingPost ? 'Creaitng...' : 'Create'}</button>
 
-      </form>
+        </form>
 
-    </section>
+      </section>
+    </>
   )
 };
 

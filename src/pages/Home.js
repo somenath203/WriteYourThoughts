@@ -5,6 +5,7 @@ import { db } from './../firebase/config';
 import Card from './../components/Card';
 import useTitle from './../hooks/useTitle';
 import SkeletonCard from './../components/SkeletonCard';
+import Navbar from './../components/Header';
 
 
 const Home = () => {
@@ -23,28 +24,31 @@ const Home = () => {
     const getAllPosts = async () => {
 
       const data = await getDocs(allPostsRef);
-  
+
       setPosts(data.docs.map((document) => {
-  
+
         return { ...document.data(), id: document.id }
-  
+
       }));
-  
+
     };
 
     getAllPosts();
 
   }, [allPostsRef]);
-  
-  
+
+
   return (
-    <section>
-      {posts.length === 0 ? <p className="no-posts">No Thoughts To Display...</p> : posts.map((post, index) => (
-        !post ? <div key={index}> <SkeletonCard /> </div> : <div key={index}>
-          <Card post={post} />
-        </div>
-      ))}
-    </section>
+    <>
+      <Navbar />
+      <section>
+        {posts.length === 0 ? <p className="no-posts">No Thoughts To Display...</p> : posts.map((post, index) => (
+          !post ? <div key={index}> <SkeletonCard /> </div> : <div key={index}>
+            <Card post={post} />
+          </div>
+        ))}
+      </section>
+    </>
   )
 };
 
