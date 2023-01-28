@@ -1,7 +1,7 @@
 import { addDoc, collection } from 'firebase/firestore';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSnackbar } from 'notistack';
+import { toast } from 'react-toastify';
 
 import { db, auth } from './../firebase/config';
 import useTitle from './../hooks/useTitle';
@@ -19,9 +19,6 @@ const CreatePost = () => {
   const [creatingPost, setCreatingPost] = useState('');
 
   const navigate = useNavigate();
-
-
-  const { enqueueSnackbar } = useSnackbar();
 
 
   const onSubmitPost = async (e) => {
@@ -43,7 +40,7 @@ const CreatePost = () => {
 
     setCreatingPost(false);
 
-    enqueueSnackbar('your post has been created successfully', { variant: 'success', anchorOrigin: { vertical: 'bottom', horizontal: 'center' }});
+    toast.success('your thought has been created successfully');
 
     navigate('/');
 

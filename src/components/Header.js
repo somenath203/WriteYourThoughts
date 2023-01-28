@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { signInWithPopup, signOut } from 'firebase/auth';
-import { useSnackbar } from 'notistack';
+import { toast } from 'react-toastify';
 
 import { auth, googleProvider } from './../firebase/config';
 import Logo from './../assets/logo.png';
@@ -12,8 +12,6 @@ const Header = () => {
   const [isAuth, setIsAuth] = useState(JSON.parse(localStorage.getItem('isAuth')) || false);
 
 
-  const { enqueueSnackbar } = useSnackbar();
-
 
   const GoogleHandleLogin = () => {
 
@@ -24,7 +22,7 @@ const Header = () => {
 
         localStorage.setItem('isAuth', true);
 
-        enqueueSnackbar('you are logged in successfully', { variant: 'success', anchorOrigin: { vertical: 'bottom', horizontal: 'center' }});
+        toast.success('you have logged in successfully');
 
       })
       .catch((err) => {
@@ -33,7 +31,7 @@ const Header = () => {
 
         console.log(err);
 
-        enqueueSnackbar('something went wrong', { variant: 'error', anchorOrigin: { vertical: 'bottom', horizontal: 'center' }});
+        toast.error('something went wrong, please try again');
 
       });
 
@@ -47,7 +45,7 @@ const Header = () => {
 
     setIsAuth(false);
 
-    enqueueSnackbar('you are logged out successfully', { variant: 'success', anchorOrigin: { vertical: 'bottom', horizontal: 'center' }});
+    toast.success('you have logged out successfully');
 
   };
 
