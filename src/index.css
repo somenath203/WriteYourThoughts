@@ -146,6 +146,11 @@ header {
   height: 300px;
 }
 
+.card .delete{
+  color: #ff4747;
+  cursor: pointer;
+}
+
 .createPost button {
   font-size: 18px;
   margin: 10px 0px;

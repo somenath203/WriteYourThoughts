@@ -24,26 +24,34 @@ const CreatePost = () => {
 
   const onSubmitPost = async (e) => {
 
-    e.preventDefault();
+    try {
 
-    const newlyCreatedDocument = {
-      title: title,
-      description: description,
-      author: {
-        email: auth.currentUser.email,
-        id: auth.currentUser.uid
-      }
-    };
+      e.preventDefault();
 
-    setCreatingPost(true);
+      const newlyCreatedDocument = {
+        title: title,
+        description: description,
+        author: {
+          email: auth.currentUser.email,
+          id: auth.currentUser.uid
+        }
+      };
 
-    await addDoc(postReference, newlyCreatedDocument);
+      setCreatingPost(true);
 
-    setCreatingPost(false);
+      await addDoc(postReference, newlyCreatedDocument);
 
-    toast.success('your thought has been created successfully');
+      setCreatingPost(false);
 
-    navigate('/home');
+      toast.success('your thought has been created successfully');
+
+      navigate('/home');
+
+    } catch (error) {
+
+      toast.error('Something went wrong!! Please try again later');
+
+    }
 
   };
 

@@ -6,6 +6,7 @@ import Card from './../components/Card';
 import useTitle from './../hooks/useTitle';
 import SkeletonCard from './../components/SkeletonCard';
 import Navbar from './../components/Header';
+import { toast } from 'react-toastify';
 
 
 const Home = () => {
@@ -23,13 +24,21 @@ const Home = () => {
 
     const getAllPosts = async () => {
 
-      const data = await getDocs(allPostsRef);
+      try {
+        
+        const data = await getDocs(allPostsRef);
 
-      setPosts(data.docs.map((document) => {
+        setPosts(data.docs.map((document) => {
+  
+          return { ...document.data(), id: document.id }
+  
+        }));
 
-        return { ...document.data(), id: document.id }
-
-      }));
+      } catch (error) {
+        
+        toast.error(`Firebase: ${error.message}. Please try again later.`);
+        
+      }
 
     };
 
