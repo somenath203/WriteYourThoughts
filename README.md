@@ -6,6 +6,6 @@ This is a web app created with the help of React and Firebase where a user will 
 
 ### NOTE
 
-Sometimes, after logging in using Google Authentication inside the app, you may get an error toast saying "Firebase: Quota Exceeded. Please Try Again Later". This error occurs when the daily limit of the free firebase plan exceeds for a given day.
+Sometimes, after logging in using Google Authentication inside the app, you may get an error-toast-message saying "Firebase: Quota Exceeded. Please Try Again Later". This error occurs when the daily limit of the free firebase plan exceeds for a given day.
 
 ![Alt text](./quotaexceedederror.jpg "quota exceeded error")
